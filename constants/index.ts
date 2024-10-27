@@ -1,3 +1,5 @@
+import moment from 'moment';
+
 export const manufacturers = [
   "Acura",
   "Alfa Romeo",
@@ -42,18 +44,15 @@ export const manufacturers = [
   "Volvo",
 ];
 
-export const yearsOfProduction = [
+const years = (startYear = 2001) => [
   { title: "Year", value: "" },
-  { title: "2015", value: "2015" },
-  { title: "2016", value: "2016" },
-  { title: "2017", value: "2017" },
-  { title: "2018", value: "2018" },
-  { title: "2019", value: "2019" },
-  { title: "2020", value: "2020" },
-  { title: "2021", value: "2021" },
-  { title: "2022", value: "2022" },
-  { title: "2023", value: "2023" },
+  ...Array.from({ length: moment().year() - startYear + 1 }, (_, i) => ({
+    title: (startYear + i).toString(),
+    value: (startYear + i).toString(),
+  })),
 ];
+
+export const yearsOfProduction = years(2001);
 
 export const fuels = [
   {
